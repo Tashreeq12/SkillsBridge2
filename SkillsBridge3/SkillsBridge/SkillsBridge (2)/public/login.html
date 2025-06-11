@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #E0F2FE 0%, #F9FAFB 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 320px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #FF9500;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #FF9500;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #FF6B00;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .register-link a {
+            color: #FF9500;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <p class="subtitle">Sign in to access SkillBridge</p>
+        
+        <form id="login-form">
+            <div class="input-group">
+                <label for="role">Select Role:</label>
+                <select id="role" required>
+                    <option value="" disabled selected>Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="error-message" id="error-message"></div>
+
+            <button type="button" id="login-btn">Sign In</button>
+
+        </form>
+
+        <p class="register-link">Don't have an account? <a href="register.html">Create one here</a></p>
+    </div>
+
+    <!-- Firebase Authentication Script -->
+    <script type="module">
+      // Import Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword, sendEmailVerification, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+      // Your Firebase config (replace with your actual Firebase details)
+      const firebaseConfig = {
+          apiKey: "AIzaSyAD37t_mlsdrtt1X7uyvSJJlappTxSC9t0",
+          authDomain: "codecrussaders.firebaseapp.com",
+          projectId: "codecrussaders",
+          storageBucket: "codecrussaders.appspot.com",
+          messagingSenderId: "806653513715",
+          appId: "1:806653513715:web:d665c2f92f5acdd89dcc86"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Login function
+      document.getElementById("login-btn").addEventListener("click", function () {
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const role = document.getElementById("role").value;
+
+          if (!role) {
+              alert("Please select a role before logging in.");
+              return;
+          }
+
+          signInWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+                  const user = userCredential.user;
+
+                  if (!user.emailVerified) {
+                      sendEmailVerification(user)
+                          .then(() => {
+                              alert("Verification email sent! Please check your email and verify before logging in.");
+                          })
+                          .catch((error) => {
+                              console.error("Error sending verification email:", error);
+                          });
+
+                      // Sign out unverified users
+                      signOut(auth);
+                      return;
+                  }
+
+                  // Role-based redirection
+                  if (role === "admin") {
+                      alert("Login successful! Redirecting to Admin Dashboard...");
+                      window.location.href = "adminDashboard.html";
+                  } else {
+                      alert("Login successful! Redirecting to User Dashboard...");
+                      window.location.href = "userDashboard.html";
+                  }
+              })
+              .catch((error) => {
+                  document.getElementById("error-message").style.display = "block";
+                  document.getElementById("error-message").textContent = "Error: " + error.message;
+              });
+      });
+    </script>
+</body>
+</html>

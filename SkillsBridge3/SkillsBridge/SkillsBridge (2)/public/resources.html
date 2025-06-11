@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore free learning resources to close your skill gaps with SkillBridge.">
+    <meta name="keywords" content="learning resources, career skills">
+    <title>Resources - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/lucide-icons/dist/umd/lucide-icons.js" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-icons"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8 text-white"></i>
+                    <span class="ml-2 text-xl font-bold text-white">SkillBridge</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link text-white">Home</a>
+                        <a href="analyzer.html" class="nav-link text-white">Analyzer</a>
+                        <a href="resources.html" class="nav-link text-white active">Resources</a>
+                        <a href="about.html" class="nav-link text-white">About</a>
+                        <a href="contact.html" class="nav-link text-white">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fas fa-bars h-6 w-6" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100 active">Resources</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">About</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[50vh] flex items-center justify-center gradient-primary overflow-hidden">
+        <img src="images/markus-spiske-yt5e_nZ7CZ8-unsplash.jpg" alt="Learning Resources Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 animate-fade-in">
+                Learning Resources
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg sm:text-xl text-blue-100 animate-slide-up">
+                Elevate your skills with over 250+ courses, inspired by Udemy and Coursera!
+            </p>
+        </div>
+    </div>
+
+    <main class="py-20 bg-gray-50">
+        <section class="container px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-heading">Your Learning Playground</h2>
+                <p class="section-subheading">Click a resource to dive into professional development!</p>
+            </div>
+            <div id="resourceTabs" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="tab md:col-span-2" style="background-image: url('https://source.unsplash.com/800x400/?python');">
+                    <h3 class="text-2xl font-semibold mb-4">Master Python Programming</h3>
+                    <p class="text-lg">Learn Python with hands-on projects—perfect for data science and automation.</p>
+                </div>
+                <div class="tab" style="background-image: url('images/greg.jpg');">
+                    <h3 class="text-2xl font-semibold mb-4">JavaScript for Web Dev</h3>
+                    <p class="text-lg">Build dynamic web apps with real-world projects.</p>
+                </div>
+                <div class="tab" style="background-image: url('images/scott.jpg');">
+                    <h3 class="text-2xl font-semibold mb-4">SQL Database Skills</h3>
+                    <p class="text-lg">Master data management for analytics and beyond.</p>
+                </div>
+                <div class="tab md:col-span-2 md:row-span-2" style="background-image: url('https://source.unsplash.com/800x600/?coaching');">
+                    <h3 class="text-2xl font-semibold mb-4">Career Coaching Hub</h3>
+                    <p class="text-lg">Get personalized guidance, resume tips, and interview prep.</p>
+                </div>
+            </div>
+            <div id="resourceModal" class="modal hidden"></div>
+        </section>
+    </main>
+
+    <!--Update-->
+    <div class="min-h-screen bg-white">
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-to-r from-gray-900 to-indigo-700 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                <div class="relative z-10 lg:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+                        Transform Your Future with Expert-Led Online Learning
+                    </h1>
+                    <p class="mt-5 text-xl text-blue-100">
+                        Join millions of learners worldwide and master new skills with our professional courses.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <a href="login.html" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-200">
+                            Explore our Resources
+                        </a>
+                        
+                    </div>
+                </div>
+                <div class="absolute right-0 top-1/2 transform -translate-y-1/2 hidden lg:block w-1/2">
+                    <img 
+                        src="images/yura-batiushyn-Y7JEzRiGYqo-unsplash.jpg" 
+                        alt="Students learning"
+                        class="rounded-l-2xl shadow-2xl"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+       
+
+        <!-- Features Section -->
+        <div class="bg-gray-50 py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-gray-900">Why Choose Us</h2>
+                    <p class="mt-4 text-xl text-gray-600">Discover what makes our platform unique</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-200">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-gray-900">Expert-Led Courses</h3>
+                        <p class="mt-4 text-gray-600">Learn from industry experts and gain practical knowledge.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-200">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-gray-900">Interactive Learning</h3>
+                        <p class="mt-4 text-gray-600">Engage with peers and instructors in real-time discussions.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-200">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="award" class="w-6 h-6 text-blue-600"></i>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-gray-900">Certified Programs</h3>
+                        <p class="mt-4 text-gray-600">Earn recognized certificates upon course completion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Courses Section -->
+        <div class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-3xl font-bold text-gray-900">Popular Courses</h2>
+                    <a href="login.html" class="text-blue-600 font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+                        View All <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80" 
+                            alt="Web Development" 
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900">Web Development Bootcamp</h3>
+                            <p class="mt-2 text-gray-600">Sarah Johnson</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <span class="ml-1 text-gray-600">4.9</span>
+                                    <span class="ml-2 text-gray-400">(12,234 students)</span>
+                                </div>
+                                <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition duration-200">
+                                    <i data-lucide="play" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+                            alt="Data Science" 
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900">Data Science Fundamentals</h3>
+                            <p class="mt-2 text-gray-600">Michael Chen</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <span class="ml-1 text-gray-600">4.8</span>
+                                    <span class="ml-2 text-gray-400">(8,129 students)</span>
+                                </div>
+                                <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition duration-200">
+                                    <i data-lucide="play" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-200 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2064&q=80" 
+                            alt="UX/UI Design" 
+                            class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900">UX/UI Design Mastery</h3>
+                            <p class="mt-2 text-gray-600">Emily Parker</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <span class="ml-1 text-gray-600">4.9</span>
+                                    <span class="ml-2 text-gray-400">(10,482 students)</span>
+                                </div>
+                                <button class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition duration-200">
+                                    <i data-lucide="play" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+
+    <!--End of update-->
+    <footer class="bg-gray-900 text-white">
+        <div class="container py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap h-8 w-8"></i>
+                        <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Inspired by Udemy and Coursera, we empower 73M+ learners with accessible, high-quality education.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/resources.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

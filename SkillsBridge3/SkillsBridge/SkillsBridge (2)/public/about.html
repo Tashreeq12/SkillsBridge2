@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about SkillBridge’s mission to empower career growth and meet our team.">
+    <meta name="keywords" content="skillbridge, about, career growth">
+    <title>About - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8 text-white"></i>
+                    <span class="ml-2 text-xl font-bold text-white">SkillBridge</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link text-white">Home</a>
+                        <a href="analyzer.html" class="nav-link text-white">Analyzer</a>
+                        <a href="resources.html" class="nav-link text-white">Resources</a>
+                        <a href="about.html" class="nav-link text-white active">About</a>
+                        <a href="contact.html" class="nav-link text-white">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fas fa-bars h-6 w-6" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Resources</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100 active">About</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[50vh] flex items-center justify-center gradient-primary overflow-hidden">
+        <img src="images/janko-ferlic-sfL_QOnmy00-unsplash.jpg" alt="About Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 animate-fade-in">
+                About SkillBridge
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg sm:text-xl text-blue-100 animate-slide-up">
+                Empowering careers with innovative tools and resources.
+            </p>
+        </div>
+    </div>
+
+    <main class="py-20 bg-gray-50">
+        <section class="container px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-heading">Our Mission</h2>
+                <p class="section-subheading">Bridging the gap between where you are and where you want to be.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <div>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        At SkillBridge, we believe everyone deserves a chance to thrive in their career. Inspired by platforms like Udemy and Coursera, we provide accessible, high-quality tools and resources to help you identify skill gaps, learn in-demand skills, and achieve your professional goals. With over 250+ courses and a community of 73M+ learners, we’re here to support your journey.
+                    </p>
+                    <section class="workflow">
+                        <h2>How SkillBridge Works</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-icon">✍️</div>
+                                <div class="timeline-content">
+                                    <h3>Step 1: Input Skills</h3>
+                                    <p>Start by entering your skills or uploading your CV. Whether you're a coder, teacher, or tradesperson, SkillBridge captures your expertise.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🤖</div>
+                                <div class="timeline-content">
+                                    <h3>Step 2: Analyze</h3>
+                                    <p>Our AI-powered system, enhanced with real-time web data, analyzes your skills to identify strengths and opportunities.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">🚀</div>
+                                <div class="timeline-content">
+                                    <h3>Step 3: Career Suggestions</h3>
+                                    <p>Receive personalized career paths—like Web Developer or Educator—tailored to your skills and current industry trends.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon">📚</div>
+                                <div class="timeline-content">
+                                    <h3>Step 4: Course Recommendations</h3>
+                                    <p>Get curated online courses from platforms like Coursera and Udemy to upskill and achieve your career goals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <div>
+                    <img src="images/sarah-elizabeth-O3gOgPB4sRU-unsplash.jpg" alt="Mission Image" class="w-full h-full object-cover rounded-xl shadow-lg">
+                </div>
+            </div>
+            <div class="text-center mb-16">
+                <h2 class="section-heading">Meet Our Team</h2>
+                <p class="section-subheading">The people driving your success.</p>
+            </div>
+            <div id="teamGrid" class="grid grid-cols-1 md:grid-cols-5 gap-8"></div>
+            <div id="teamModal" class="modal hidden"></div>
+        </section>
+
+
+        
+    </main>
+
+
+    <footer class="bg-gray-900 text-white">
+        <div class="container py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap h-8 w-8"></i>
+                        <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Inspired by Udemy and Coursera, we empower 73M+ learners with accessible, high-quality education.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/about.js"></script>
+</body>
+</html>

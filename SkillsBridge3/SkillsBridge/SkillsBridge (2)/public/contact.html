@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact SkillBridge for support or inquiries about career growth tools and resources.">
+    <meta name="keywords" content="skillbridge, contact, career support">
+    <title>Contact - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8 text-white"></i>
+                    <span class="ml-2 text-xl font-bold text-white">SkillBridge</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link text-white">Home</a>
+                        <a href="analyzer.html" class="nav-link text-white">Analyzer</a>
+                        <a href="resources.html" class="nav-link text-white">Resources</a>
+                        <a href="about.html" class="nav-link text-white">About</a>
+                        <a href="contact.html" class="nav-link text-white active">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fas fa-bars h-6 w-6" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Resources</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">About</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100 active">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[50vh] flex items-center justify-center gradient-primary overflow-hidden">
+        <img src="images/miles-burke-idhx-MOCDSk-unsplash.jpg" alt="Contact Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 animate-fade-in">
+                Get in Touch
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg sm:text-xl text-blue-100 animate-slide-up">
+                We’re here to make your career journey awesome!
+            </p>
+        </div>
+    </div>
+
+    <main class="py-20 bg-gray-50">
+        <section class="container px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="section-heading">Contact Us</h2>
+                    <p class="section-subheading">Drop us a line—we’d love to chat!</p>
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="contact-input" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="contact-input" placeholder="Your Email" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" class="contact-input" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-orange w-full">Send Message</button>
+                    </form>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Office Hours</h3>
+                        <p class="text-gray-600">Monday - Friday: 9 AM - 5 PM PST</p>
+                        <p class="text-gray-600 mt-2"><a href="#" class="text-blue-600 hover:underline">View FAQs</a></p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Our Location</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019177255674!2d-122.419415684681!3d37.774929779759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808f8c1e6e5d%3A0x1e8e8e8e8e8e8e8e!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sus!4v1631234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-xl shadow-lg"></iframe>
+                    <p class="mt-4 text-gray-600 text-center">Swing by our San Francisco hub!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white">
+        <div class="container py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap h-8 w-8"></i>
+                        <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Inspired by Udemy and Coursera, we empower 73M+ learners with accessible, high-quality education.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/contact.js"></script>
+</body>
+</html>

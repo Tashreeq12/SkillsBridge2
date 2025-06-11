@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analyze your skills and get personalized learning recommendations with SkillBridge.">
+    <meta name="keywords" content="skill analyzer, career skills">
+    <title>Skill Analyzer - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8 text-white"></i>
+                    <span class="ml-2 text-xl font-bold text-white">SkillBridge</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="nav-link text-white">Home</a>
+                        <a href="analyzer.html" class="nav-link text-white active">Analyzer</a>
+                        <a href="resources.html" class="nav-link text-white">Resources</a>
+                        <a href="about.html" class="nav-link text-white">About</a>
+                        <a href="contact.html" class="nav-link text-white">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white">
+                        <i class="fas fa-bars h-6 w-6" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute w-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100 active">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Resources</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">About</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[50vh] flex items-center justify-center gradient-primary overflow-hidden">
+        <img src="images/afif-ramdhasuma-jl4BQJs87Do-unsplash.jpg" alt="Analyzer Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 animate-fade-in">
+                Skill Analyzer
+            </h1>
+            <p class="mt-3 max-w-md mx-auto text-lg sm:text-xl text-blue-100 animate-slide-up">
+                Discover your strengths and close skill gaps fast!
+            </p>
+        </div>
+    </div>
+
+    <main class="py-20 bg-gray-50">
+        <section class="container px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-heading">How It Works</h2>
+                <p class="section-subheading">Unlock your career potential in a few simple steps.</p>
+            </div>
+            <div class="analyzer-grid mb-16">
+                <div class="analyzer-card">
+                    <h3>Upload Your Resume</h3>
+                    <p>Drop your resume here or paste your skills to get started—quick and easy!</p>
+                </div>
+                <div class="analyzer-card">
+                    <h3>Skill Gap Analysis</h3>
+                    <p>We’ll compare your skills to top job roles and highlight where you can improve.</p>
+                </div>
+                <div class="analyzer-card">
+                    <h3>Get Recommendations</h3>
+                    <p>Receive AI-driven suggestions for courses and resources tailored to you.</p>
+                </div>
+                <div class="analyzer-card">
+                    <h3>Track Your Progress</h3>
+                    <p>Monitor your learning journey and see how you’re closing the gap!</p>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto mb-16">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Try It Now</h3>
+                <textarea id="skillsInput" class="w-full p-4 border-2 border-orange-500 rounded-lg mb-4" rows="6" placeholder="Paste your resume or describe your skills (e.g., 'I know JavaScript and Python, worked as a web developer')"></textarea>
+                <button id="analyzeBtn" class="btn-primary w-full">Analyze My Skills</button>
+            </div>
+            <div id="aiRecommendations" class="hidden container px-4 sm:px-6 lg:px-8 animate-slide-up">
+                <h2 class="section-heading text-center mb-12">Your Personalized Career Insights</h2>
+                <div id="skillAnalysis" class="mb-12 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-lightbulb text-orange-500 mr-2"></i> Skill Analysis & Suggestions
+                    </h3>
+                    <div id="suggestions" class="text-gray-700 space-y-6 text-lg leading-relaxed"></div>
+                </div>
+                <div id="courseRecommendations" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white">
+        <div class="container py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap h-8 w-8"></i>
+                        <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Inspired by platforms like Udemy and Coursera, we offer over 250+ courses to 73M+ learners worldwide.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="./js/analyzer.js"></script>
+</body>
+</html>

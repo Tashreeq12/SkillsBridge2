@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SkillBridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/adminDash.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 font-roboto">
+    <nav class="fixed w-full z-50 bg-gray-900 text-white shadow-md">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8"></i>
+                    <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link hover:text-gray-300">Home</a>
+                    <a href="analyzer.html" class="nav-link hover:text-gray-300">Analyzer</a>
+                    <a href="resources.html" class="nav-link hover:text-gray-300">Resources</a>
+                    <a href="about.html" class="nav-link hover:text-gray-300">About</a>
+                    <a href="contact.html" class="nav-link hover:text-gray-300">Contact</a>
+                    <button id="notificationButton" class="relative text-white hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="notification-badge absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                    <a href="#" onclick="handleLogout()" class="nav-link hover:bg-gray-800 px-3 py-2 rounded-md">Logout</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md focus:outline-none">
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Resources</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[30vh] flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600">
+        <img src="images/retrosupply-jLwVAUtLOAQ-unsplash.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center text-white">
+            <h1 class="text-4xl sm:text-5xl font-bold">Admin Dashboard</h1>
+            <p class="mt-4 text-lg">Manage resources and requests efficiently</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="controls bg-white rounded-lg shadow-md p-4 mb-6 flex justify-between items-center">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search requests..." class="w-full p-2 border rounded-md">
+            </div>
+            <button id="addResourceBtn" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                <i class="fas fa-plus mr-2"></i>Add Resource
+            </button>
+        </div>
+
+        <!-- Stat Boxes -->
+        <div class="stats-boxes grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <div class="stats-box bg-white rounded-lg shadow-md p-4 text-center">
+                <h4 class="text-lg font-semibold text-gray-700">Total Requests</h4>
+                <span id="totalRequests" class="text-3xl font-bold text-blue-600">0</span>
+            </div>
+            <div class="stats-box bg-white rounded-lg shadow-md p-4 text-center">
+                <h4 class="text-lg font-semibold text-gray-700">Pending Requests</h4>
+                <span id="pendingRequests" class="text-3xl font-bold text-blue-600">0</span>
+            </div>
+            <div class="stats-box bg-white rounded-lg shadow-md p-4 text-center">
+                <h4 class="text-lg font-semibold text-gray-700">Approved Requests</h4>
+                <span id="approvedRequests" class="text-3xl font-bold text-blue-600">0</span>
+            </div>
+            <div class="stats-box bg-white rounded-lg shadow-md p-4 text-center">
+                <h4 class="text-lg font-semibold text-gray-700">Rejected Requests</h4>
+                <span id="rejectedRequests" class="text-3xl font-bold text-blue-600">0</span>
+            </div>
+        </div>
+
+        <div class="tabs mb-6 flex space-x-4 border-b">
+            <button class="tab-button active text-blue-600 border-b-2 border-blue-600 py-2 px-4" data-tab="pending">Pending Requests</button>
+            <button class="tab-button text-gray-600 py-2 px-4" data-tab="approved">Approved</button>
+            <button class="tab-button text-gray-600 py-2 px-4" data-tab="rejected">Rejected</button>
+            <button class="tab-button text-gray-600 py-2 px-4" data-tab="all">All Resources</button>
+        </div>
+
+        <div class="resource-table bg-white rounded-lg shadow-md overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr class="text-left text-gray-600">
+                        <th class="p-4">Title</th>
+                        <th class="p-4">Type</th>
+                        <th class="p-4">Description</th>
+                        <th class="p-4 requester-col">Requester</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="resourceTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="stats-section mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Requests by Resource</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold mb-4">Request Distribution</h3>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+
+        <div id="resourceModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="modal-content bg-white rounded-lg p-6 w-full max-w-md">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-xl font-semibold">Add New Resource</h2>
+                    <button class="close-button text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="resourceForm">
+                    <div class="mb-4">
+                        <label for="title" class="block text-sm font-medium">Title</label>
+                        <input type="text" id="title" name="title" class="w-full p-2 border rounded-md" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="type" class="block text-sm font-medium">Type</label>
+                        <select id="type" name="type" class="w-full p-2 border rounded-md" required>
+                            <option value="pdf">PDF</option>
+                            <option value="training">Training</option>
+                            <option value="course">Course</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium">Description</label>
+                        <textarea id="description" name="description" class="w-full p-2 border rounded-md" required></textarea>
+                    </div>
+                    <div id="fileUploadGroup" class="mb-4 hidden">
+                        <label for="fileUpload" class="block text-sm font-medium">Upload PDF</label>
+                        <input type="file" id="fileUpload" name="fileUpload" class="w-full p-2" accept=".pdf">
+                    </div>
+                    <div class="flex justify-end space-x-4">
+                        <button type="button" class="secondary-button px-4 py-2 border rounded-md" data-action="cancel">Cancel</button>
+                        <button type="submit" class="primary-button bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="notificationsPanel" class="notifications-panel hidden absolute top-16 right-4 bg-white rounded-lg shadow-lg w-80">
+            <div class="p-4 border-b">
+                <h3 class="text-lg font-semibold">Notifications</h3>
+            </div>
+            <div class="notifications-list max-h-64 overflow-y-auto"></div>
+            <div class="p-4 border-t">
+                <button class="clear-all-button text-blue-600 hover:underline w-full text-center">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="bg-gray-900 text-white">
+      <div class="container py-12 px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div class="col-span-2">
+                  <div class="flex items-center mb-4">
+                      <i class="fas fa-graduation-cap h-8 w-8"></i>
+                      <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                  </div>
+                  <p class="text-gray-400 max-w-md">
+                      Inspired by platforms like Udemy and Coursera, we offer over 250+ courses to 73M+ learners worldwide.
+                  </p>
+              </div>
+              <div>
+                  <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                  <ul class="space-y-2">
+                      <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                      <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                      <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                      <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                      <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                  </ul>
+              </div>
+              <div>
+                  <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                  <div class="flex space-x-4">
+                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                  </div>
+              </div>
+          </div>
+          <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+              <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+
+    <script src="./js/adminDash.js" type="module"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

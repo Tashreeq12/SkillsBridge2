@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - SkillBridge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/userDash.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header and Navigation (unchanged) -->
+    <nav class="fixed w-full z-50 bg-gray-900 text-white shadow-md">
+        <div class="container px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap h-8 w-8"></i>
+                    <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="nav-link hover:text-gray-300">Home</a>
+                    <a href="analyzer.html" class="nav-link hover:text-gray-300">Analyzer</a>
+                    <a href="resources.html" class="nav-link hover:text-gray-300">Resources</a>
+                    <a href="about.html" class="nav-link hover:text-gray-300">About</a>
+                    <a href="contact.html" class="nav-link hover:text-gray-300">Contact</a>
+                    <button id="notificationButton" class="relative text-white hover:text-gray-300 focus:outline-none">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="notification-badge absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                    <a href="#" onclick="handleLogout()" class="nav-link hover:bg-gray-800 px-3 py-2 rounded-md">Logout</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menuButton" class="p-2 rounded-md focus:outline-none">
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Home</a>
+                <a href="analyzer.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Analyzer</a>
+                <a href="resources.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Resources</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-900 hover:bg-gray-100">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative min-h-[30vh] flex items-center justify-center bg-gradient-to-r from-blue-600 to-indigo-600">
+        <img src="images/retrosupply-jLwVAUtLOAQ-unsplash.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="relative container px-4 sm:px-6 lg:px-8 py-20 text-center text-white">
+            <h1 class="text-4xl sm:text-5xl font-bold">Welcome to your Dashboard</h1>
+            <p class="mt-4 text-lg">Manage resources and requests efficiently</p>
+        </div>
+    </div>
+
+
+    <main class="pt-20 pb-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-8 animate-fade-in">
+            <h1 class="text-3xl font-semibold text-gray-900 mb-4 sm:mb-0"><span id="userName"></span></h1>
+            <div class="header-actions flex items-center space-x-4">
+                <button id="notificationButton" class="relative p-2 text-gray-600 hover:text-gray-800 transition-colors duration-200">
+                    <div class="notification-badge absolute -top-1 -right-1 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">0</div>
+                    <i class="fas fa-bell text-xl"></i>
+                </button>
+                <button id="profileButton" class="flex items-center space-x-2 p-2 text-gray-700 hover:text-gray-900 transition-colors duration-200">
+                    <i class="fas fa-user-circle text-xl"></i>
+                    <span class="font-medium">Profile</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex space-x-4 mb-6">
+            <button class="tab-button active text-blue-600 border-b-2 border-blue-600" data-tab="resources">Resources</button>
+            <button class="tab-button" data-tab="requests">My Requests</button>
+        </div>
+
+        <div class="relative mb-6">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <i class="fas fa-search text-gray-400"></i>
+            </div>
+            <input type="text" id="searchInput" placeholder="Search resources..." class="search-input w-full pl-10">
+        </div>
+
+        <div id="resourceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination flex justify-center items-center mt-6 space-x-4">
+            <button id="prevPage" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50" disabled>Previous</button>
+            <span id="pageInfo" class="text-gray-700">Page 1</span>
+            <button id="nextPage" class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">Next</button>
+        </div>
+
+        <button id="requestNewResourceBtn" class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-200 flex items-center">
+            <i class="fas fa-plus mr-2"></i> Request New Resource
+        </button>
+    </main>
+
+    <div id="requestModal" class="modal">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-900">Request New Resource</h2>
+                <button class="close-button text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="requestForm" class="space-y-4">
+                <div>
+                    <label for="requestTitle" class="block text-sm font-medium text-gray-700">Resource Name</label>
+                    <input type="text" id="requestTitle" name="title" required class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="requestType" class="block text-sm font-medium text-gray-700">Type</label>
+                    <select id="requestType" name="type" required class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        <option value="pdf">PDF</option>
+                        <option value="training">Training</option>
+                        <option value="course">Course</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="requestDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                    <textarea id="requestDescription" name="description" required class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" class="secondary-button px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200" data-action="cancel">Cancel</button>
+                    <button type="submit" class="primary-button px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-900">Profile</h2>
+                <button class="close-button text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="profileContent" class="space-y-4">
+                <!-- Profile content populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (unchanged) -->
+    <footer class="bg-gray-900 text-white">
+        <div class="container py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-graduation-cap h-8 w-8"></i>
+                        <span class="ml-2 text-xl font-bold">SkillBridge</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        Inspired by platforms like Udemy and Coursera, we offer over 250+ courses to 73M+ learners worldwide.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="analyzer.html" class="text-gray-400 hover:text-white">Analyzer</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-white">Resources</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">© <span id="currentYear"></span> SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./js/config.js" defer></script>
+    <script src="./js/index.js" type="module" defer></script>
+    <script src="./js/adminDash.js" type="module"></script>
+    <script type="module" src="./js/userDashMain.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "skillbridge",
+    "version": "1.0.0",
+    "description": "SkillBridge AI-powered skill analyzer",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "node server/server.js",
+        "dev": "nodemon server/server.js"
+    },
+    "dependencies": {
+        "@tailwindcss/vite": "^4.0.14",
+        "axios": "^1.6.8",
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "firebase": "^11.4.0",
+        "tailwindcss": "^4.0.14"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
